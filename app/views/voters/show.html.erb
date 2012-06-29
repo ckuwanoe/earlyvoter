@@ -1,5 +1,12 @@
 <%- model_class = @voter.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => "Early vote locations nearby" %></h1>
 </div>
-<%= gmaps4rails(@json) %>
+<%= gmaps({
+	:kml => {:data => '[ { url: "http://media.roryreid.com.s3.amazonaws.com/kml_finish/October-18.kml",
+	                                options: {clickable: true } }]' },
+    "map_options" => { "type" => "ROADMAP", "auto_adjust" => false, "auto_zoom" => false, "center_longitude" => @voter.lng, "center_latitude" => @voter.lat, "zoom" => 15 },
+    "markers"     => { "data" => @json }
+		
+})
+%>

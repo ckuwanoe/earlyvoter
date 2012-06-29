@@ -22,3 +22,7 @@
    height: 400px;
    border:#555555 2px solid;
 }
+
+.map_container img, .gmaps4rails_map img {
+	max-width: none;
+}
