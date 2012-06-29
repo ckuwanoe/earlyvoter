@@ -1,0 +1,21 @@
+<h1>Listing voters</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @voters.each do |voter| %>
+  <tr>
+    <td><%= link_to 'Show', voter %></td>
+    <td><%= link_to 'Edit', edit_voter_path(voter) %></td>
+    <td><%= link_to 'Destroy', voter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Voter', new_voter_path %>
