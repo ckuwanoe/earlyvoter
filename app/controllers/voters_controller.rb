@@ -14,6 +14,7 @@ class VotersController < ApplicationController
   # GET /voters/1.json
   def show
     @voter = Voter.find(params[:id])
+    @json = @voter.to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +45,7 @@ class VotersController < ApplicationController
 
     respond_to do |format|
       if @voter.save
-        format.html { redirect_to @voter, notice: 'Voter was successfully created.' }
+        format.html { redirect_to @voter, notice: 'Found your early vote locations.' }
         format.json { render json: @voter, status: :created, location: @voter }
       else
         format.html { render action: "new" }

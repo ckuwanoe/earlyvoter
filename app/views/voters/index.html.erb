@@ -1,21 +1,54 @@
-<h1>Listing voters</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @voters.each do |voter| %>
-  <tr>
-    <td><%= link_to 'Show', voter %></td>
-    <td><%= link_to 'Edit', edit_voter_path(voter) %></td>
-    <td><%= link_to 'Destroy', voter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Voter.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:voter_name) %></th>
+      <th><%= model_class.human_attribute_name(:street_address) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:zipcode) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:phone) %></th>
+      <th><%= model_class.human_attribute_name(:lat) %></th>
+      <th><%= model_class.human_attribute_name(:lng) %></th>
+      <th><%= model_class.human_attribute_name(:gmaps) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @voters.each do |voter| %>
+      <tr>
+        <td><%= link_to voter.id, voter_path(voter) %></td>
+        <td><%= voter.voter_name %></td>
+        <td><%= voter.street_address %></td>
+        <td><%= voter.city %></td>
+        <td><%= voter.state %></td>
+        <td><%= voter.zipcode %></td>
+        <td><%= voter.email %></td>
+        <td><%= voter.phone %></td>
+        <td><%= voter.lat %></td>
+        <td><%= voter.lng %></td>
+        <td><%= voter.gmaps %></td>
+        <td><%=l voter.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_voter_path(voter), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      voter_path(voter),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Voter', new_voter_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_voter_path,
+            :class => 'btn btn-primary' %>

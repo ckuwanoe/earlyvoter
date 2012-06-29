@@ -1,5 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_voter_path(@voter) %> |
-<%= link_to 'Back', voters_path %>
+<%- model_class = @voter.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<%= gmaps4rails(@json) %>

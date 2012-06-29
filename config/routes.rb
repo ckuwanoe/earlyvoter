@@ -1,6 +1,6 @@
 Earlyvoter::Application.routes.draw do
   resources :voters
-  root :to => 'voters#index'
+  root :to => 'voters#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
